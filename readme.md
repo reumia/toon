@@ -38,7 +38,10 @@
 
 ## get started
 
-1. `config.json` 파일을 수정한다.
+##### `config.json`
+
+`config.json` 파일을 수정하여 생성될 웹사이트를 설정한다.
+
 ```json
 {
   "title": "Website Title",
@@ -46,15 +49,24 @@
   "rootUrl": "http://localhost:9999/dist"
 }
 ```
-    - title : 웹사이트의 제목 입력
-    - description : 웹사이트의 설명 입력
-    - rootUrl : `dist` 폴더가 업로드될 웹사이트의 접속 루트 입력
-    
-2. `attachment/` 폴더에 이미지를 위치시킨다. 파일명은 아래의 규칙을 엄수한다.
+- title : 웹사이트의 제목 입력
+- description : 웹사이트의 설명 입력
+- rootUrl : `dist` 폴더가 업로드될 웹사이트의 접속 루트 입력
+
+##### `attachment/`
+
+`attachment/` 폴더에 작업물을 복사한다.
+파일의 이름은 아래 규칙을 엄수한다.
+
 ```
-YYYYMMDD_category_title.jpg
+YYYYMMDD_category_title.jpg     // ex) 20160201_만화_1화.jpg
 ```
-예를 들면 `20160201_만화_1화.jpg` 이렇게 작성할 수 있다.
  
-3. Command Line에서 `gulp build` 명령어로 산출물을 제작한다.
-4. 제작된 `dist/`폴더의 내용을 웹사이트에 업로드 한다.
+##### `gulp build`
+
+`gulp build` 명령어를 통해 산출물을 제작한다.
+`dist/` 폴더가 생성된 것을 확인한다.
+
+##### Upload
+
+제작된 `dist/`폴더의 내용을 웹사이트에 업로드 한다.

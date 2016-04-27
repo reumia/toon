@@ -103,6 +103,10 @@ gulp.task('template', function () {
         .pipe(gulp.dest("./dist/view"));
 });
 
+gulp.task('generateThumbnail', function () {
+
+});
+
 gulp.task('copyAttachmentToDist', function () {
     console.log('Coping...');
     fs.copy('./attachment', './dist/attachment', function (err) {
@@ -124,6 +128,7 @@ gulp.task('watch', function () {
     gulp.watch('./src/js/*.js', ['browserify']);
     gulp.watch(['./src/scss/*.scss', './src/scss/**/*.scss', './src/scss/**/**/*.scss'], ['sass']);
     gulp.watch('./src/template/*.html', ['template']);
+    gulp.watch('./attachment/*', ['generateThumbnail', 'copyAttachmentToDist']);
 });
 
-gulp.task('build', ['default', 'copyAttachmentToDist']);
+gulp.task('build', ['default', 'generateThumbnail', 'copyAttachmentToDist']);
