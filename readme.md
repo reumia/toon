@@ -38,7 +38,7 @@
 
 ## get started
 
-##### `config.json`
+##### 1. Configurtaion
 
 `config.json` 파일을 수정하여 생성될 웹사이트를 설정한다.
 
@@ -53,7 +53,7 @@
 - description : 웹사이트의 설명 입력
 - rootUrl : `dist` 폴더가 업로드될 웹사이트의 접속 루트 입력
 
-##### `attachment/`
+##### 2. Copy Works to Attachment
 
 `attachment/` 폴더에 작업물을 복사한다.
 파일의 이름은 아래 규칙을 엄수한다.
@@ -62,11 +62,11 @@
 YYYYMMDD_category_title.jpg     // ex) 20160201_만화_1화.jpg
 ```
  
-##### `gulp build`
+##### 3. Build
 
 `gulp build` 명령어를 통해 산출물을 제작한다.
 `dist/` 폴더가 생성된 것을 확인한다.
 
-##### Upload
+##### 4. Upload
 
 제작된 `dist/`폴더의 내용을 웹사이트에 업로드 한다.
