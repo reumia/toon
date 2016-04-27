@@ -3,6 +3,7 @@
 class Toon {
 
 	constructor ( args ) {
+		this.config = args.configuration;
 		this.navItems = document.querySelectorAll(args.ui.navItem);
 		this.cards = document.querySelectorAll(args.ui.card);
 		this.layer = document.querySelectorAll(args.ui.layer)[0];
@@ -136,6 +137,7 @@ class Toon {
 		} else {
 			this.savedScrollY = window.scrollY;
 			window.scrollTo(0, 0);
+			this.layer.scrollTop = 0;
 		}
 	}
 
@@ -148,6 +150,9 @@ let options = {
 		"card" : '.card',
 		"layer" : '.layer',
 		"dim" : '.dim'
+	},
+	"configuration" : {
+		"root" : 'http://localhost/dist/'
 	}
 };
 
