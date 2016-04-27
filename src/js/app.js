@@ -1,6 +1,6 @@
 'use strict';
 
-class Toon {
+class Toonman {
 
 	constructor ( args ) {
 		this.config = args.configuration;
@@ -153,5 +153,5 @@ let options = {
 	}
 };
 
-let toon = new Toon(options);
+let toonman = new Toonman(options);
 toon.init();
