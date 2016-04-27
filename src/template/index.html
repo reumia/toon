@@ -24,7 +24,7 @@
 <div class="app__content">
     <section class="section section--index card-wrap">
         {{#data}}
-        <a href="#" class="card" data-id="{{id}}" data-url="{{fullName}}.{{format}}" data-date="{{date}}" data-title="{{name}}" data-category="{{category}}" style="background-image: url(/attachment/{{fullName}}.{{format}});">
+        <a href="#" class="card" data-id="{{id}}" data-url="{{config.rootUrl}}/attachment/{{fullName}}.{{format}}" data-date="{{date}}" data-title="{{name}}" data-category="{{category}}" style="background-image: url({{config.rootUrl}}/attachment/{{fullName}}.{{format}});">
             <div class="card__info">
                 <time class="date" >{{date}}</time>
                 <span class="category">{{category}}</span>

@@ -104,7 +104,7 @@ class Toon {
 		this.layerItems.layerInfoTitle.innerText = dataset.title;
 		this.layerItems.layerInfoDate.innerText = dataset.date;
 		this.layerItems.layerInfoCategory.innerText = dataset.category;
-		this.layerItems.layerImage.src = '/attachment/' + dataset.url;
+		this.layerItems.layerImage.src = dataset.url;
 		this.layer.dataset.id = dataset.id;
 	}
 
@@ -150,9 +150,6 @@ let options = {
 		"card" : '.card',
 		"layer" : '.layer',
 		"dim" : '.dim'
-	},
-	"configuration" : {
-		"root" : 'http://localhost/dist/'
 	}
 };
 

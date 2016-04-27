@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     sourcemaps = require('gulp-sourcemaps'),
     mustache = require('gulp-mustache'),
-    fs = require('fs');
+    fs = require('fs-extra');
+
 
 var dataObj = function () {
     // Function for Get GUID
@@ -102,6 +103,14 @@ gulp.task('template', function () {
         .pipe(gulp.dest("./dist/view"));
 });
 
+gulp.task('copyAttachmentToDist', function () {
+    console.log('Coping...');
+    fs.copy('./attachment', './dist/attachment', function (err) {
+        if (err) return console.error(err)
+        console.log("success!")
+    });
+});
+
 gulp.task('default', ['browserify', 'sass', 'template']);
 
 gulp.task('watch', function () {
@@ -115,10 +124,6 @@ gulp.task('watch', function () {
     gulp.watch('./src/js/*.js', ['browserify']);
     gulp.watch(['./src/scss/*.scss', './src/scss/**/*.scss', './src/scss/**/**/*.scss'], ['sass']);
     gulp.watch('./src/template/*.html', ['template']);
-});
-
-gulp.task('copyAttachmentToDist', function () {
-    console.log('Coping...');
 });
 
 gulp.task('build', ['default', 'copyAttachmentToDist']);

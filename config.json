@@ -1,4 +1,5 @@
 {
   "title": "Website Title",
-  "description": "Descriptions for your website"
+  "description": "Descriptions for your website",
+  "rootUrl": "http://localhost:9999/dist"
 }
