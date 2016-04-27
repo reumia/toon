@@ -21,12 +21,8 @@ $namespace: 'layer';
   &.active {
     display: block;
   }
-  @include media(mobile) {
-    padding: ($common-space * 2) $common-space ($common-space * 2);
-    border-width: 0;
-  }
   @include media(tablet) {
-    padding: ($common-space * 2);
+    padding: ($common-space * 2) $common-space ($common-space * 2);
     border-width: 0;
   }
 }

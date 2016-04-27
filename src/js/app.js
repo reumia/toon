@@ -154,4 +154,4 @@ let options = {
 };
 
 let toonman = new Toonman(options);
-toon.init();
+toonman.init();
