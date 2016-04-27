@@ -1,0 +1,32 @@
+{
+  "name": "toon.zzoman.com",
+  "version": "1.0.0",
+  "description": "Webtoon Platform for ZZOMAN.COM",
+  "main": "dist/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "HyunsukJo",
+  "license": "ISC",
+  "devDependencies": {
+    "6to5ify": "^4.1.1",
+    "browserify": "^13.0.0",
+    "gulp": "^3.9.1",
+    "gulp-mustache": "^2.2.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-streamify": "^1.0.2",
+    "gulp-webserver": "^0.9.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}

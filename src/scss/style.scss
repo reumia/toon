@@ -1,0 +1,28 @@
+@import "init/normalize";
+@import "init/variables";
+@import "init/placeholders";
+@import "init/mixins";
+@import "component/app";
+@import "component/card";
+@import "component/nav";
+@import "component/layer";
+@import "component/dim";
+
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+  color: $color-font;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: $color-font;
+  transition: color $common-transition;
+}
+
+.common-width {
+  @include common-width();
+}

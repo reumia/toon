@@ -1,0 +1,52 @@
+/* App Component */
+$namespace: "app";
+
+.#{$namespace} {
+  background-color: darken($color-background, 5%);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.#{$namespace}__header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  padding: $common-space;
+  background-color: $color-font;
+  border-top: 4px solid $color-brand;
+  @include opacity(0.9);
+  .title {
+    margin: 0;
+    font-size: $font-size;
+    a {
+      color: #fff;
+      text-decoration: none;
+      &:hover {
+        color: $color-brand;
+      }
+    }
+  }
+  .description {
+    margin: 2px 0 0;
+    color: $color-font-lightest;
+  }
+}
+
+.#{$namespace}__content {
+  @include common-width();
+  margin-top: 110px;
+  padding: $common-space;
+}
+
+.#{$namespace}__footer {
+  padding: $common-space;
+  address {
+    margin: $common-space 0 0;
+    color: $color-font-lightest;
+    font-style: normal;
+    a {
+      color: inherit;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@mixin common-width( $width: $common-width, $margin-vertical: 0 ) {
+  max-width: $width;
+  margin: $margin-vertical auto;
+}
+
+@mixin opacity( $point ) {
+  opacity: $point;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$point * 100})"; /* IE 8 */
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$point * 100}); /* IE 7 and olders */
+}
+
+@mixin media($media) {
+  @if $media == mobile {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == tablet {
+    @media only screen and (max-width: $break-large) { @content; }
+  }
+  @else if $media == pc {
+    @media only screen and (min-width: $break-large + 1) { @content; }
+  }
+}

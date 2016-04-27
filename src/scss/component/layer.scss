@@ -1,0 +1,68 @@
+$namespace: 'layer';
+
+.#{$namespace} {
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin: 0 auto;
+  padding: ($common-space * 2) ($common-space * 3) ($common-space * 3);
+  max-width: $layer-width;
+  height: 100%;
+  background: $color-background;
+  border-width: 0 1px;
+  border-style: solid;
+  border-color: $color-font-lighter;
+  text-align: center;
+  &.active {
+    display: block;
+  }
+  @include media(mobile) {
+    padding: ($common-space * 2) $common-space ($common-space * 2);
+    border-width: 0;
+  }
+  @include media(tablet) {
+    padding: ($common-space * 2);
+    border-width: 0;
+  }
+}
+
+.#{$namespace}__info {
+  .title {
+    display: block;
+    font-size: $font-size-title;
+    font-weight: bold;
+    &:after {
+      content: '';
+      display: block;
+      margin: $common-space auto;
+      width: $common-space * 2;
+      border-top: 1px solid lighten($color-font-lightest, 30);
+    }
+  }
+  .date,
+  .category {
+    display: inline-block;
+    margin: 0 3px ($common-space * 2);
+    color: $color-font-lightest;
+  }
+  .category {
+    &:before {
+      content: '#';
+      margin-right: 1px;
+    }
+  }
+}
+
+.#{$namespace}__image {
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+}

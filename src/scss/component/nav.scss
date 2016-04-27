@@ -1,0 +1,32 @@
+$namespace: "nav";
+
+.#{$namespace} {
+  margin-top: $common-space-half;
+  padding-top: $common-space-half;
+  width: 100%;
+  border-top: 1px solid $color-font-lighter;
+}
+
+.#{$namespace}__item {
+  color: $color-font-lightest;
+  text-decoration: none;
+  &:before {
+    content: '#';
+    margin-right: 1px;
+  }
+  &:after {
+    content: ',';
+    display: inline-block;
+    margin-left: 1px;
+    margin-right: 3px;
+  }
+  &:hover,
+  &.active {
+    color: $color-brand;
+  }
+  &:last-child {
+    &:after {
+      display: none;
+    }
+  }
+}

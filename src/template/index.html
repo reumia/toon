@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="app">
+<!-- Header -->
+<header class="app__header">
+    <div class="common-width">
+        <h1 class="title"><a href="./">{{config.title}}</a></h1>
+        <p class="description">{{config.description}}</p>
+        <nav class="nav">
+            {{#category}}
+            <a class="nav__item" href="#">{{.}}</a>
+            {{/category}}
+        </nav>
+    </div>
+</header>
+<!-- Content -->
+<div class="app__content">
+    <section class="section section--index card-wrap">
+        {{#data}}
+        <a href="#" class="card" data-id="{{id}}" data-url="{{fullName}}.{{format}}" data-date="{{date}}" data-title="{{name}}" data-category="{{category}}" style="background-image: url(/attachment/{{fullName}}.{{format}});">
+            <div class="card__info">
+                <time class="date" >{{date}}</time>
+                <span class="category">{{category}}</span>
+                <strong class="title">{{name}}</strong>
+            </div>
+        </a>
+        {{/data}}
+    </section>
+    <div class="layer"></div>
+    <div class="dim"></div>
+</div>
+<!-- Footer -->
+<footer class="app__footer">
+    <address>&copy; 2016 <a href="http://zzoman.com">zzoman.com</a> Allright Reserved.</address>
+</footer>
+<!-- Scripts-->
+<script src="../js/app.js"></script>
+</body>
+</html>
