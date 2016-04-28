@@ -125,16 +125,17 @@ class Toonman {
 	toggleLayerGroup () {
 		this.toggleLayer();
 		this.toggleDim();
-		// set HTML Overflow
-		if ( document.getElementsByTagName('html')[0].style.overflow === 'hidden' ) {
-			document.getElementsByTagName('html')[0].style.overflow = '';
-		} else {
-			document.getElementsByTagName('html')[0].style.overflow = 'hidden';
-		}
-		// set Scroll Position
 		if ( ! /active/g.test(this.layer.className) ) {
+			// remove HTML Overflow
+			document.getElementsByTagName('html')[0].style.overflow = '';
+			// set saved Scroll Position
 			window.scrollTo(0, this.savedScrollY);
 		} else {
+			// add layer Height
+			this.layer.style.height = window.innerHeight + 'px';
+			// set HTML Overflow
+			document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+			// save Scroll Position & reset
 			this.savedScrollY = window.scrollY;
 			window.scrollTo(0, 0);
 			this.layer.scrollTop = 0;
