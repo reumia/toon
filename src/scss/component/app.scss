@@ -35,8 +35,7 @@ $namespace: "app";
 
 .#{$namespace}__content {
   @include common-width();
-  margin-top: 110px;
-  padding: $common-space;
+  padding: ($common-space + 110) $common-space $common-space;
 }
 
 .#{$namespace}__footer {
