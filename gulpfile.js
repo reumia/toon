@@ -7,7 +7,9 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     sourcemaps = require('gulp-sourcemaps'),
     mustache = require('gulp-mustache'),
-    fs = require('fs-extra');
+    fs = require('fs-extra'),
+    isImage = /\.(bmp|gif|jpg|jpeg|png)$/g,
+    dataArray = fs.readdirSync('./attachment');
 
 
 var dataObj = function () {
@@ -27,9 +29,7 @@ var dataObj = function () {
         configObj = JSON.parse(configFile);
 
     // Get List of Cartoons form Attachment
-    var dataArray = fs.readdirSync('./attachment'),
-        regex = /^[.]/g,
-        dataList = [],
+    var dataList = [],
         categoryList = [];
 
     var sortByDate = function (a, b) {
@@ -43,12 +43,14 @@ var dataObj = function () {
     };
 
     dataArray.forEach(function(data){
-        if ( ! regex.test(data) ) {
+        var cond = data.match(isImage) != null && data.match(isImage).length > 0;
+        if ( cond ) {
             var id = guid(),
                 splitedData = data.split('.'),
                 format = splitedData[1],
                 fileName = splitedData[0],
                 splitedFileName = fileName.split('_');
+
             if ( splitedFileName.length === 3 ) {
                 // set data lists
                 dataList.push({
@@ -64,9 +66,11 @@ var dataObj = function () {
                     categoryList.push(splitedFileName[1]);
                 }
             }
-            dataList.sort(sortByDate).reverse();
         }
     });
+
+    // Reverse dataList
+    dataList.sort(sortByDate).reverse();
 
     // Collapsing Data;
     var dataObj = {
@@ -110,7 +114,7 @@ gulp.task('generateThumbnail', function () {
 gulp.task('copyAttachmentToDist', function () {
     console.log('Coping...');
     fs.copy('./attachment', './dist/attachment', function (err) {
-        if (err) return console.error(err)
+        if (err) return console.error(err);
         console.log("success!")
     });
 });
