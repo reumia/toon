@@ -127,20 +127,14 @@ class Toonman {
 		this.toggleDim();
 		if ( ! /active/g.test(this.layer.className) ) {
 			// remove HTML Overflow
-			document.getElementsByTagName('html')[0].style.overflow = '';
-			document.getElementsByTagName('html')[0].style.height = 'auto';
-			document.getElementsByTagName('html')[0].style.width = 'auto';
-			document.getElementsByTagName('html')[0].style.position = 'static';
+			document.getElementsByTagName('html')[0].className = '';
 			// set saved Scroll Position
 			window.scrollTo(0, this.savedScrollY);
 		} else {
 			// add layer Height
 			this.layer.style.height = window.innerHeight + 'px';
 			// set HTML Overflow
-			document.getElementsByTagName('html')[0].style.overflow = 'hidden';
-			document.getElementsByTagName('html')[0].style.height = '100%';
-			document.getElementsByTagName('html')[0].style.width = '100%';
-			document.getElementsByTagName('html')[0].style.position = 'fixed';
+			document.getElementsByTagName('html')[0].className = 'layer-activated';
 			// save Scroll Position & reset
 			this.savedScrollY = window.scrollY;
 			window.scrollTo(0, 0);
