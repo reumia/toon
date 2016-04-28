@@ -7,6 +7,12 @@
 * `attachment` 폴더를 읽어서 `JSON` 형태의 파일로 목록화된 data 생성하여 업로드
     * `JSON` 굳이 필요없을 듯. `gulpfile.js` 내에서 변수로 생성하여 사용하는 것으로 수정.
     * 하지만 추후 여러 페이지를 작성할 필요가 있다면? `JSON`이나 `Object`로 데이터를 가지고 있어야 할지도.
+        * Pagination 작성
+            * `JSON` 파일을 생성하면 서버에서 템플릿 엔진을 돌려야 함. 어떻게든 `gulpfile.js` 내에서 해결할 것.
+            * 옵션값을 기준으로 data 를 잘라서 각각의 폴더에 산출물 생성.
+* Thumbnail 처리는 어떻게?
+    * 로컬에서 제대로 돌아가는 NPM 기반 Thumbnail Generator가 없음.
+    * ~~디자이너들 성향 고려하여 썸네일 직접 제작하도록 할까?~~ 안됨... 디자인의 의미가 없음.
 * JavaScript는 ES6로 작성
 
 ## Intro
