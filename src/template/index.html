@@ -24,7 +24,7 @@
 <div class="app__content">
     <section class="section section--index card-wrap">
         {{#data}}
-        <a href="#" class="card" data-id="{{id}}" data-url="{{config.rootUrl}}/attachment/{{fullName}}.{{format}}" data-date="{{date}}" data-title="{{name}}" data-category="{{category}}" style="background-image: url({{config.rootUrl}}/attachment/{{fullName}}.{{format}});">
+        <a href="#" class="card" data-id="{{id}}" data-url="{{config.rootUrl}}/attachment/{{fullName}}.{{format}}" data-date="{{date}}" data-title="{{name}}" data-category="{{category}}" data-visible="hidden" style="background-image: url();">
             <div class="card__info">
                 <time class="date" >{{date}}</time>
                 <span class="category">{{category}}</span>
@@ -41,6 +41,19 @@
     <address>&copy; 2016 <a href="http://zzoman.com">zzoman.com</a> Allright Reserved.</address>
 </footer>
 <!-- Scripts-->
+<script>
+    var options = {
+        "ui" : {
+            "navItem" : '.nav__item',
+            "card" : '.card',
+            "layer" : '.layer',
+            "dim" : '.dim'
+        },
+        "config" : {
+            "numPerScroll" : "{{config.scroll}}"
+        }
+    };
+</script>
 <script src="{{config.rootUrl}}/js/app.js"></script>
 </body>
 </html>

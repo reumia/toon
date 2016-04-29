@@ -24,6 +24,12 @@ $namespace: card;
   background-repeat: no-repeat;
   background-color: $color-background;
   text-decoration: none;
+  &[data-visible=hidden] {
+    display: none;
+  }
+  &[data-visible=visible] {
+    display: block;
+  }
   &:before {
     content: '';
     position: absolute;

@@ -3,7 +3,7 @@
 class Toonman {
 
 	constructor ( args ) {
-		this.config = args.configuration;
+		this.config = args.config;
 		this.navItems = document.querySelectorAll(args.ui.navItem);
 		this.cards = document.querySelectorAll(args.ui.card);
 		this.layer = document.querySelectorAll(args.ui.layer)[0];
@@ -15,6 +15,36 @@ class Toonman {
 
 	init () {
 		this.setEvent();
+		this.setContents();
+	}
+
+	setContents () {
+		let i;
+		if ( this.config.numPerScroll == 0 || this.config.numPerScroll == "" ) {
+			console.info("config.json 내의 scroll값이 0이거나 비어있으므로 스크롤이 실행되지 않습니다.");
+			for ( i = 0; i < this.cards.length; i ++ ) {
+				let card = this.cards[i];
+				card.dataset.visible = "visible";
+			}
+			this.setImageSource(this.cards);
+		} else {
+			console.info("스크롤 기능이 실행됩니다.");
+			this.setScroll();
+		}
+	}
+
+	setImageSource ( cardArr ) {
+		let i;
+		for ( i = 0; i < cardArr.length; i++ ){
+			let card = cardArr[i];
+			let source = card.dataset.url;
+			card.style.backgroundImage = 'url('+source+')';
+		}
+	}
+
+	setScroll () {
+		let max = this.config.numPerScroll;
+		console.log(max);
 	}
 
 	setEvent () {
@@ -35,7 +65,7 @@ class Toonman {
 		this.dim.addEventListener('click', this.toggleLayerGroup.bind(this));
 	}
 
-	clickNavItem (event) {
+	clickNavItem ( event ) {
 		let button = event.target;
 		let buttonClass = button.className;
 		let text = event.target.innerText;
@@ -61,7 +91,7 @@ class Toonman {
 		}
 	}
 
-	clickCard (event) {
+	clickCard ( event ) {
 		event.preventDefault();
 		let dataset = event.target.dataset;
 		this.setLayerData(dataset);
@@ -141,18 +171,7 @@ class Toonman {
 			document.getElementsByTagName('html')[0].className = 'layer-activated';
 		}
 	}
-
-
 }
 
-let options = {
-	"ui" : {
-		"navItem" : '.nav__item',
-		"card" : '.card',
-		"layer" : '.layer',
-		"dim" : '.dim'
-	}
-};
-
-let toonman = new Toonman(options);
+var toonman = new Toonman(options);
 toonman.init();
