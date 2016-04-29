@@ -25,6 +25,10 @@
 
 ### Infinite Scroll
 * 버튼을 클릭하면 아래로 펼쳐지는 Infinite Scroll로 Pagination 대체
+1. `<img>`태그의 `src` 값을 비운채로 모든 데이터 index.html에 뿌림.
+2. `config.maxItem` 값을 기준으로 갯수만큼 아이템을 `display:block`.
+3. 카테고리 sorting 할 경우, 해당 카테고리의 DOM을 먼저 탐색한 후 `config.maxItem` 기준으로 잘라서 `display:block`.
+4. 새로운 아이템이 아래쪽으로 append 되기 위해서 이미 `display:block`처리된 아이템은 카테고리를 클릭하지 않는 이상 계속해서 상태 유지.
 
 ## Intro
 
