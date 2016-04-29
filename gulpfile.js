@@ -100,62 +100,11 @@ gulp.task('sass', function () {
 });
 
 gulp.task('template', function () {
-    var dataObjResult = dataObj(),
-        config = dataObjResult.config,
-        data = dataObjResult.data,
-        dataLength = data.length,
-        paginatedDataArr = [],
-        tasks = [],
-        pageIndexUrl = dataObjResult.config.rootUrl+'/view/page/1';
+    var dataObjResult = dataObj();
 
-    var deleteFolderRecursive = function (path) {
-        if( fs.existsSync(path) ) {
-            fs.readdirSync(path).forEach(function(file,index){
-                var curPath = path + "/" + file;
-                if(fs.lstatSync(curPath).isDirectory()) { // recurse
-                    deleteFolderRecursive(curPath);
-                } else { // delete file
-                    fs.unlinkSync(curPath);
-                }
-            });
-            fs.rmdirSync(path);
-        }
-    };
-
-    deleteFolderRecursive("./dist/view/page");
-
-    if ( config.pagination == false || config.paginationUnit == undefined || config.paginationUnit == "" ) {
-        // Pagination 옵션 비활성화
-        return gulp.src("./src/template/index.html")
-            .pipe(mustache(dataObjResult))
-            .pipe(gulp.dest("./dist/view"));
-    } else {
-        // Pagination 옵션 활성화
-        for ( var i = 0; i < dataLength; i = i + config.paginationUnit ){
-            var maxPagination;
-            if ( i + config.paginationUnit > dataLength ) maxPagination = dataLength;
-            else maxPagination = i + config.paginationUnit;
-            paginatedDataArr.push(data.slice(i, i + config.paginationUnit));
-        }
-
-        tasks.push(
-            gulp.src("./src/template/page/index.html")
-                .pipe(mustache({"url" : pageIndexUrl}))
-                .pipe(gulp.dest("./dist/view"))
-        );
-        paginatedDataArr.forEach(function(data, key){
-            var tempData = dataObj();
-            tempData.data = data;
-            tempData.config["currentPage"] = key + 1;
-            tempData.config["pageLength"] = paginatedDataArr.length;
-            tasks.push(
-                gulp.src("./src/template/index.html")
-                    .pipe(mustache(tempData))
-                    .pipe(gulp.dest("./dist/view/page/" + (key + 1)))
-            );
-        });
-        return merge(tasks);
-    }
+    return gulp.src("./src/template/index.html")
+        .pipe(mustache(dataObjResult))
+        .pipe(gulp.dest("./dist/view"));
 });
 
 gulp.task('generateThumbnail', function () {

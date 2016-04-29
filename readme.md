@@ -11,11 +11,20 @@
     * `JSON` 파일을 생성하면 서버에서 템플릿 엔진을 돌려야 함. 어떻게든 `gulpfile.js` 내에서 해결할 것.
     * 옵션값을 기준으로 data 를 잘라서 각각의 폴더에 산출물 생성.
     * 추후 데이터 작성법 리팩토링 필요성 있음.
-    * Pagination 에 따른 카테고리 Sorting 기능 수정 필요. (파라미터 전달로)  
 * Thumbnail 처리는 어떻게?
     * 로컬에서 제대로 돌아가는 NPM 기반 Thumbnail Generator가 없음.
     * ~~디자이너들 성향 고려하여 썸네일 직접 제작하도록 할까?~~ 안됨... 디자인의 의미가 없음.
 * JavaScript는 ES6로 작성
+
+## Todo
+
+### ~~Pagination~~
+* ~~Paginator 구조작성 및 스타일링~~
+* ~~Pagination 제작에 따른 카테고리 Sorting 기능 수정 필요.~~ 
+    * ~~가능한가!?!?!?!?!? 망했네.~~
+
+### Infinite Scroll
+* 버튼을 클릭하면 아래로 펼쳐지는 Infinite Scroll로 Pagination 대체
 
 ## Intro
 
