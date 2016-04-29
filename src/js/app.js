@@ -99,8 +99,8 @@ class Toonman {
 		}
 	}
 
-	setLayerData () {
-		let dataset = arguments[0];
+	setLayerData (data) {
+		let dataset = data;
 		this.layerItems.layerInfoTitle.innerText = dataset.title;
 		this.layerItems.layerInfoDate.innerText = dataset.date;
 		this.layerItems.layerInfoCategory.innerText = dataset.category;
@@ -133,12 +133,12 @@ class Toonman {
 		} else {
 			// add layer Height
 			this.layer.style.height = window.innerHeight + 'px';
-			// set HTML Overflow
-			document.getElementsByTagName('html')[0].className = 'layer-activated';
 			// save Scroll Position & reset
 			this.savedScrollY = window.scrollY;
 			window.scrollTo(0, 0);
 			this.layer.scrollTop = 0;
+			// set HTML Overflow
+			document.getElementsByTagName('html')[0].className = 'layer-activated';
 		}
 	}
 
