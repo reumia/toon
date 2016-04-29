@@ -4,16 +4,7 @@
 
 * 웹툰서비스
 * 이미지만 `attachment` 폴더에 삽입하여 새로운 포스트 생성
-* `attachment` 폴더를 읽어서 `JSON` 형태의 파일로 목록화된 data 생성하여 업로드
-    * `JSON` 굳이 필요없을 듯. `gulpfile.js` 내에서 `데이터 + 템플릿엔진` 조합으로 사용.
-    * ~~하지만 추후 여러 페이지를 작성할 필요가 있다면? `JSON`이나 `Object`로 데이터를 가지고 있어야 할지도.~~
-* Pagination 작성
-    * `JSON` 파일을 생성하면 서버에서 템플릿 엔진을 돌려야 함. 어떻게든 `gulpfile.js` 내에서 해결할 것.
-    * 옵션값을 기준으로 data 를 잘라서 각각의 폴더에 산출물 생성.
-    * 추후 데이터 작성법 리팩토링 필요성 있음.
-* Thumbnail 처리는 어떻게?
-    * 로컬에서 제대로 돌아가는 NPM 기반 Thumbnail Generator가 없음.
-    * ~~디자이너들 성향 고려하여 썸네일 직접 제작하도록 할까?~~ 안됨... 디자인의 의미가 없음.
+* `attachment` 폴더를 읽어서 정적인 `.html` 형태의 산출물 생성
 * JavaScript는 ES6로 작성
 
 ## Todo
@@ -25,10 +16,15 @@
 
 ### Infinite Scroll
 * 버튼을 클릭하면 아래로 펼쳐지는 Infinite Scroll로 Pagination 대체
+
 1. `<img>`태그의 `src` 값을 비운채로 모든 데이터 index.html에 뿌림.
 2. `config.maxItem` 값을 기준으로 갯수만큼 아이템을 `display:block`.
 3. 카테고리 sorting 할 경우, 해당 카테고리의 DOM을 먼저 탐색한 후 `config.maxItem` 기준으로 잘라서 `display:block`.
 4. 새로운 아이템이 아래쪽으로 append 되기 위해서 이미 `display:block`처리된 아이템은 카테고리를 클릭하지 않는 이상 계속해서 상태 유지.
+
+### Thumbnail
+* 로컬에서 제대로 돌아가는 NPM 기반 Thumbnail Generator가 없음.
+* ~~디자이너들 성향 고려하여 썸네일 직접 제작하도록 할까?~~ 안됨... 디자인의 의미가 없음.
 
 ## Intro
 
