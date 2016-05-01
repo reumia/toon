@@ -61,3 +61,10 @@ $namespace: card;
   margin-top: -($card-border-width*1.2);
   text-align: center;
 }
+.#{$namespace}--more {
+  min-width: 0;
+  text-align: center;
+  &:before {
+
+  }
+}

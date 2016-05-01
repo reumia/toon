@@ -5,6 +5,7 @@ class Toonman {
 	constructor ( args ) {
 		this.config = args.config;
 		this.navItems = document.querySelectorAll(args.ui.navItem);
+		this.cardWrap = document.querySelectorAll(args.ui.cardWrap)[0];
 		this.cards = document.querySelectorAll(args.ui.card);
 		this.layer = document.querySelectorAll(args.ui.layer)[0];
 		this.dim = document.querySelectorAll(args.ui.dim)[0];
@@ -19,32 +20,55 @@ class Toonman {
 	}
 
 	setContents () {
-		let i;
 		if ( this.config.numPerScroll == 0 || this.config.numPerScroll == "" ) {
 			console.info("config.json 내의 scroll값이 0이거나 비어있으므로 스크롤이 실행되지 않습니다.");
-			for ( i = 0; i < this.cards.length; i ++ ) {
+			for ( let i = 0; i < this.cards.length; i ++ ) {
 				let card = this.cards[i];
 				card.dataset.visible = "visible";
+				this.setImageSource(card);
 			}
-			this.setImageSource(this.cards);
 		} else {
 			console.info("스크롤 기능이 실행됩니다.");
-			this.setScroll();
+			this.setScrolledContents();
+			this.setScrollButton();
 		}
 	}
 
-	setImageSource ( cardArr ) {
-		let i;
-		for ( i = 0; i < cardArr.length; i++ ){
+	setScrollButton () {
+		let scrollButton = document.createElement('a');
+		scrollButton.className = 'card card--more';
+		scrollButton.innerText = 'Load More';
+		scrollButton.href = '#';
+		scrollButton.addEventListener('click', function(event){
+			event.preventDefault();
+			let cardArr = document.querySelectorAll('[data-visible=hidden]');
+			this.setScrolledContents(cardArr);
+		}.bind(this));
+		this.cardWrap.appendChild(scrollButton);
+	}
+
+	removeScrollButton () {
+		let scrollButton = document.querySelector('.card--more');
+		this.cardWrap.removeChild(scrollButton);
+	}
+
+	setImageSource ( card ) {
+		let source = card.dataset.url;
+		card.style.backgroundImage = 'url('+source+')';
+	}
+
+	setScrolledContents ( cardArr ) {
+		let cardArr = cardArr || this.cards;
+		const maxNum = this.config.numPerScroll;
+		for ( let i = 0; i < maxNum; i ++ ) {
 			let card = cardArr[i];
-			let source = card.dataset.url;
-			card.style.backgroundImage = 'url('+source+')';
+			if ( card != undefined ) {
+				card.dataset.visible = "visible";
+				this.setImageSource(card);
+			} else {
+				this.removeScrollButton();
+			}
 		}
-	}
-
-	setScroll () {
-		let max = this.config.numPerScroll;
-		console.log(max);
 	}
 
 	setEvent () {
