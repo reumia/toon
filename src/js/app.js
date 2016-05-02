@@ -197,6 +197,7 @@ class Toonman {
 			this.layer.className = this.layerDefaultClass;
 		}
 	}
+
 	toggleDim () {
 		if ( this.dim.className === this.dimDefaultClass ) {
 			this.dim.className = this.dim.className + ' active';
@@ -204,6 +205,7 @@ class Toonman {
 			this.dim.className = this.dimDefaultClass;
 		}
 	}
+
 	toggleLayerGroup () {
 		this.toggleLayer();
 		this.toggleDim();
