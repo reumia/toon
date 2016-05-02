@@ -5,6 +5,7 @@ class Toonman {
 	constructor ( args ) {
 		this.ui = args.ui;
 		this.config = args.config;
+		this.maxNum = this.config.maxNum;
 		this.navItems = document.querySelectorAll(this.ui.navItem);
 		this.cardWrap = document.querySelectorAll(this.ui.cardWrap)[0];
 		this.cards = document.querySelectorAll(this.ui.card);
@@ -18,42 +19,35 @@ class Toonman {
 
 	init () {
 		this.setEvent();
-		this.setContents();
+		this.setCards(this.cards);
 	}
 
-	setContents () {
-		if ( this.config.numPerScroll == 0 || this.config.numPerScroll == "" ) {
+	initContents () {
+		this.hideCards();
+		this.showScrollButton();
+	}
+
+	setCards ( cardArr ) {
+		if ( this.maxNum == 0 || this.maxNum == "" ) {
 			console.info("config.json 내의 scroll값이 0이거나 비어있으므로 스크롤이 실행되지 않습니다.");
-			for ( let i = 0; i < this.cards.length; i ++ ) {
-				let card = this.cards[i];
+			for ( let i = 0; i < cardArr.length; i ++ ) {
+				let card = cardArr[i];
 				card.dataset.visible = "visible";
 				this.setImageSource(card);
 			}
+			this.hideScrollButton();
 		} else {
 			console.info("스크롤 기능이 실행됩니다.");
-			this.setScrolledContents();
-			this.setScrollButton();
+			this.setScrolledCards(cardArr);
 		}
 	}
 
-	setScrollButton () {
-		let scrollButton = document.createElement('a');
-		scrollButton.className = 'button button--more';
-		scrollButton.innerText = 'Load More';
-		scrollButton.href = '#';
-		scrollButton.addEventListener('click', function(event){
-			event.preventDefault();
-			let cardArr = document.querySelectorAll('[data-visible=hidden]');
-			this.setScrolledContents(cardArr);
-		}.bind(this));
-		this.cardWrap.parentElement.appendChild(scrollButton);
+	hideScrollButton () {
+		this.scrollButton.dataset.visible = "hidden";
 	}
 
-	removeScrollButton () {
-		let scrollButton = document.querySelector('.button--more');
-		if ( scrollButton ) {
-			this.cardWrap.parentElement.removeChild(scrollButton);
-		}
+	showScrollButton () {
+		this.scrollButton.dataset.visible = "visible";
 	}
 
 	setImageSource ( card ) {
@@ -63,17 +57,23 @@ class Toonman {
 		thumbnail.style.backgroundImage = 'url('+source+')';
 	}
 
-	setScrolledContents ( cardArr ) {
-		let cardArr = cardArr || this.cards;
-		const maxNum = this.config.numPerScroll;
-		for ( let i = 0; i < maxNum; i ++ ) {
+	setScrolledCards ( cardArr ) {
+		let cardArr = cardArr;
+		for ( let i = 0; i < this.maxNum; i ++ ) {
 			let card = cardArr[i];
 			if ( card != undefined ) {
 				card.dataset.visible = "visible";
 				this.setImageSource(card);
 			} else {
-				this.removeScrollButton();
+				this.hideScrollButton();
 			}
+		}
+	}
+
+	hideCards () {
+		for ( let i = 0; i < this.cards.length; i ++ ) {
+			let card = this.cards[i];
+			card.dataset.visible = "hidden";
 		}
 	}
 
@@ -93,6 +93,12 @@ class Toonman {
 		this.layer.addEventListener('click', this.toggleLayerGroup.bind(this));
 		// click Dim
 		this.dim.addEventListener('click', this.toggleLayerGroup.bind(this));
+		// click ScrollButton
+		this.scrollButton.addEventListener('click', function(event){
+			event.preventDefault();
+			let cardArr = document.querySelectorAll('[data-visible=hidden]');
+			this.setScrolledCards(cardArr);
+		}.bind(this));
 	}
 
 	clickNavItem ( event ) {
@@ -100,6 +106,10 @@ class Toonman {
 		let buttonClass = button.className;
 		let text = event.target.innerText;
 		let i;
+		let categorizedCardArr = [];
+
+		// 카드 초기화
+		this.initContents();
 
 		// 클릭된 버튼을 활성화 시킨다.
 		for ( i = 0; i < button.parentElement.children.length; i ++ ) {
@@ -114,21 +124,15 @@ class Toonman {
 		for ( i = 0; i < this.cards.length; i ++ ) {
 			let card = this.cards[i];
 			if ( card.dataset.category === text ) {
-				card.style.display = "block";
-			} else {
-				card.style.display = "none";
+				categorizedCardArr.push(card);
 			}
 		}
+		this.setCards(categorizedCardArr);
 	}
 
 	clickCard ( event ) {
 		event.preventDefault();
-		let dataset;
-		if ( event.target.className === this.ui.card ) {
-			dataset = event.target.dataset;
-		} else {
-			dataset = event.target.parentElement.dataset;
-		}
+		let dataset = event.currentTarget.dataset;
 		this.setLayerData(dataset);
 		this.toggleLayerGroup();
 	}
