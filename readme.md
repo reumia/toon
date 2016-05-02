@@ -73,7 +73,8 @@ __Toonman__은 단순한 이미지 파일만으로 이미지 기반의 블로그
 {
   "title": "Website Title",
   "description": "Descriptions for your website",
-  "rootUrl": "http://localhost:9999/dist"
+  "rootUrl": "http://localhost:9999/dist",
+  "scroll": 8
 }
 ```
 - title : 웹사이트의 제목 입력
