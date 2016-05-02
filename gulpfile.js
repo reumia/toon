@@ -109,12 +109,6 @@ gulp.task('template', function () {
 
 gulp.task('generateThumbnail', function () {
     console.info('thumb generator developing...');
-    dataArray.forEach(function (data) {
-        var cond = data.match(isImage) != null && data.match(isImage).length > 0;
-        if ( cond ) {
-
-        }
-    });
 });
 
 gulp.task('copyAttachmentToDist', function () {
