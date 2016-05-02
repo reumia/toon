@@ -4,7 +4,7 @@ $namespace: card;
   @extend %clearfix;
   margin: ($common-space-half / -2);
   @include media(mobile) {
-    margin-left: 0;
+    margin: 0;
   }
 }
 .#{$namespace} {
@@ -13,12 +13,6 @@ $namespace: card;
   padding: ($common-space-half / 2);
   background-color: transparent;
   text-decoration: none;
-  &[data-visible=hidden] {
-    display: none;
-  }
-  &[data-visible=visible] {
-    display: block;
-  }
   @include media(tablet) {
     width: 50%;
   }

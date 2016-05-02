@@ -4,21 +4,23 @@ $namespace: "button";
   display: inline-block;
   padding: $common-space;
   text-align: center;
-  border-width: 1px 1px 3px;
+  border-width: 1px;
   border-color: $color-border;
-  border-style: solid;
-  background-color: $color-background;
+  border-style: dashed;
   color: $color-font-lightest;
   text-decoration: none;
-  transition: color $common-transition, border-color $common-transition;
+  transition: color $common-transition, border-color $common-transition, background-color $common-transition;
   &:hover {
     color: $color-font;
-    border-color: $color-brand;
+    border-color: $color-font-lightest;
   }
 }
 
 .#{$namespace}--more {
   display: block;
   margin: $common-space auto 0;
-  width: 200px;
+  @include media(mobile) {
+   margin-left: ($common-space-half / 2);
+   margin-right: ($common-space-half / 2);
+  }
 }

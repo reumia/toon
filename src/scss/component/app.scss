@@ -35,15 +35,21 @@ $namespace: "app";
 
 .#{$namespace}__content {
   padding-top: $common-space + 110;
-  padding-bottom: $common-space;
+  padding-bottom: $common-space * 4;
 }
 
 .#{$namespace}__footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding: $common-space;
+  text-align: center;
   address {
     margin: $common-space 0 0;
-    color: $color-font-lightest;
+    color: $color-font-lighter;
     font-style: normal;
+    opacity: .4;
     a {
       color: inherit;
     }

@@ -27,3 +27,11 @@ a {
 .common-width {
   @include common-width();
 }
+
+[data-visible=hidden] {
+  display: none!important;
+}
+
+[data-visible=visible] {
+  display: block!important;
+}
