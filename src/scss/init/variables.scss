@@ -1,5 +1,5 @@
 // Common
-$common-width: 100%;
+$common-width: 960px;
 $common-space: 20px;
 $common-space-half: $common-space / 2;
 $common-transition: 0.1s;
@@ -15,6 +15,7 @@ $color-background: #fff;
 $color-font: #222;
 $color-font-lighter: mix($color-font, $color-background, 90%);
 $color-font-lightest: mix($color-font, $color-background, 50%);
+$color-border: rgba(0,0,0,.15);
 
 // Font
 $font-family: sans-serif;
@@ -28,8 +29,7 @@ $font-size-smallest: $font-size * 0.5;
 
 // Card
 $card-border-width: 40px;
-$card-width: 240px;
-$card-height: 200px;
+$card-height: 210px;
 $card-space: $common-space-half;
 
 // Layer

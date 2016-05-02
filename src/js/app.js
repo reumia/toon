@@ -3,14 +3,16 @@
 class Toonman {
 
 	constructor ( args ) {
+		this.ui = args.ui;
 		this.config = args.config;
-		this.navItems = document.querySelectorAll(args.ui.navItem);
-		this.cardWrap = document.querySelectorAll(args.ui.cardWrap)[0];
-		this.cards = document.querySelectorAll(args.ui.card);
-		this.layer = document.querySelectorAll(args.ui.layer)[0];
-		this.dim = document.querySelectorAll(args.ui.dim)[0];
-		this.layerDefaultClass = args.ui.layer.split('.')[1];
-		this.dimDefaultClass = args.ui.dim.split('.')[1];
+		this.navItems = document.querySelectorAll(this.ui.navItem);
+		this.cardWrap = document.querySelectorAll(this.ui.cardWrap)[0];
+		this.cards = document.querySelectorAll(this.ui.card);
+		this.scrollButton = document.querySelector(this.ui.scrollButton);
+		this.layer = document.querySelectorAll(this.ui.layer)[0];
+		this.dim = document.querySelectorAll(this.ui.dim)[0];
+		this.layerDefaultClass = this.ui.layer.split('.')[1];
+		this.dimDefaultClass = this.ui.dim.split('.')[1];
 		this.layerItems = this.setLayer();
 	}
 
@@ -36,7 +38,7 @@ class Toonman {
 
 	setScrollButton () {
 		let scrollButton = document.createElement('a');
-		scrollButton.className = 'card card--more';
+		scrollButton.className = 'button button--more';
 		scrollButton.innerText = 'Load More';
 		scrollButton.href = '#';
 		scrollButton.addEventListener('click', function(event){
@@ -44,17 +46,21 @@ class Toonman {
 			let cardArr = document.querySelectorAll('[data-visible=hidden]');
 			this.setScrolledContents(cardArr);
 		}.bind(this));
-		this.cardWrap.appendChild(scrollButton);
+		this.cardWrap.parentElement.appendChild(scrollButton);
 	}
 
 	removeScrollButton () {
-		let scrollButton = document.querySelector('.card--more');
-		this.cardWrap.removeChild(scrollButton);
+		let scrollButton = document.querySelector('.button--more');
+		if ( scrollButton ) {
+			this.cardWrap.parentElement.removeChild(scrollButton);
+		}
 	}
 
 	setImageSource ( card ) {
 		let source = card.dataset.url;
-		card.style.backgroundImage = 'url('+source+')';
+		let cardInner = card.children[0];
+		let thumbnail = cardInner.children[1];
+		thumbnail.style.backgroundImage = 'url('+source+')';
 	}
 
 	setScrolledContents ( cardArr ) {
@@ -117,7 +123,12 @@ class Toonman {
 
 	clickCard ( event ) {
 		event.preventDefault();
-		let dataset = event.target.dataset;
+		let dataset;
+		if ( event.target.className === this.ui.card ) {
+			dataset = event.target.dataset;
+		} else {
+			dataset = event.target.parentElement.dataset;
+		}
 		this.setLayerData(dataset);
 		this.toggleLayerGroup();
 	}

@@ -22,23 +22,30 @@
 </header>
 <!-- Content -->
 <div class="app__content">
-    <section class="section section--index card-wrap">
-        {{#data}}
-        <a href="#" class="card" data-id="{{id}}" data-url="{{config.rootUrl}}/attachment/{{fullName}}.{{format}}" data-date="{{date}}" data-title="{{name}}" data-category="{{category}}" data-visible="hidden" style="background-image: url();">
-            <div class="card__info">
-                <time class="date" >{{date}}</time>
-                <span class="category">{{category}}</span>
-                <strong class="title">{{name}}</strong>
-            </div>
-        </a>
-        {{/data}}
-    </section>
-    <div class="layer"></div>
-    <div class="dim"></div>
+    <div class="common-width">
+        <section class="section section--index card-wrap">
+            {{#data}}
+            <a href="#" class="card" data-id="{{id}}" data-url="{{config.rootUrl}}/attachment/{{fullName}}.{{format}}" data-date="{{date}}" data-title="{{name}}" data-category="{{category}}" data-visible="hidden">
+                <div class="card__inner">
+                    <div class="info">
+                        <time class="date" >{{date}}</time>
+                        <span class="category">{{category}}</span>
+                        <strong class="title">{{name}}</strong>
+                    </div>
+                    <div class="thumbnail"></div>
+                </div>
+            </a>
+            {{/data}}
+        </section>
+        <div class="layer"></div>
+        <div class="dim"></div>
+    </div>
 </div>
 <!-- Footer -->
 <footer class="app__footer">
-    <address>&copy; 2016 <a href="http://zzoman.com">zzoman.com</a> Allright Reserved.</address>
+    <div class="common-width">
+        <address>&copy; 2016 <a href="http://zzoman.com">zzoman.com</a> Allright Reserved.</address>
+    </div>
 </footer>
 <!-- Scripts-->
 <script>
@@ -48,7 +55,8 @@
             "card" : '.card',
             "cardWrap" : '.card-wrap',
             "layer" : '.layer',
-            "dim" : '.dim'
+            "dim" : '.dim',
+            "scrollButton" : '.button--more'
         },
         "config" : {
             "numPerScroll" : "{{config.scroll}}"

@@ -12,7 +12,7 @@ $namespace: "app";
   top: 0;
   width: 100%;
   z-index: 10;
-  padding: $common-space;
+  padding: $common-space 0;
   background-color: $color-font;
   border-top: 4px solid $color-brand;
   @include opacity(0.9);
@@ -34,8 +34,8 @@ $namespace: "app";
 }
 
 .#{$namespace}__content {
-  @include common-width();
-  padding: ($common-space + 110) $common-space $common-space;
+  padding-top: $common-space + 110;
+  padding-bottom: $common-space;
 }
 
 .#{$namespace}__footer {

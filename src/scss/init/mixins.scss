@@ -1,6 +1,7 @@
 @mixin common-width( $width: $common-width, $margin-vertical: 0 ) {
-  max-width: $width;
   margin: $margin-vertical auto;
+  padding: 0 $common-space;
+  max-width: $width;
 }
 
 @mixin opacity( $point ) {

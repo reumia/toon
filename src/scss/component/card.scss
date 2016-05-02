@@ -2,27 +2,16 @@ $namespace: card;
 
 .#{$namespace}-wrap {
   @extend %clearfix;
-  margin-top: -($card-space);
-  margin-left: -($card-space);
+  margin: ($common-space-half / -2);
   @include media(mobile) {
     margin-left: 0;
   }
 }
 .#{$namespace} {
   float: left;
-  position: relative;
-  margin-top: $card-space;
-  margin-left: $card-space;
-  padding: $common-space-half;
-  min-width: $card-width;
-  height: $card-height;
-  border-style: solid;
-  border-color: $color-background;
-  border-width: $card-border-width*1.5 $card-border-width 0;
-  background-size: 100%;
-  background-position: 50% 0;
-  background-repeat: no-repeat;
-  background-color: $color-background;
+  width: 25%;
+  padding: ($common-space-half / 2);
+  background-color: transparent;
   text-decoration: none;
   &[data-visible=hidden] {
     display: none;
@@ -30,14 +19,28 @@ $namespace: card;
   &[data-visible=visible] {
     display: block;
   }
+  @include media(tablet) {
+    width: 50%;
+  }
+  @include media(mobile) {
+    float: none;
+    width: 100%;
+  }
+}
+.#{$namespace}__inner {
+  position: relative;
+  padding: $common-space $common-space 0;
+  height: $card-height;
+  background-color: #fff;
   &:before {
     content: '';
     position: absolute;
-    top: -($card-border-width*1.5);
-    left: -($card-border-width);
+    z-index: 1;
+    top: 0;
+    left: 0;
     bottom: 0;
-    right: -($card-border-width);
-    border: 1px solid #ddd;
+    right: 0;
+    border: 1px solid $color-border;
     background-color: transparent;
     transition: background-color $common-transition, border-color $common-transition;
   }
@@ -47,19 +50,22 @@ $namespace: card;
       background-color: rgba(255,255,255,.3);
     }
   }
-  @include media(mobile) {
-    float: none;
-    display: block;
-    max-width: 100%;
-    width: 100%;
-    margin-left: 0;
+  .info {
+    position: relative;
+    z-index: 1;
+    text-align: center;
   }
-}
-.#{$namespace}__info {
-  position: relative;
-  z-index: 1;
-  margin-top: -($card-border-width*1.2);
-  text-align: center;
+  .thumbnail {
+    position: absolute;
+    top: 60px;
+    left: $common-space;
+    right: $common-space;
+    bottom: 0;
+    background-size: 100%;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    background-color: $color-background;
+  }
 }
 .#{$namespace}--more {
   min-width: 0;
