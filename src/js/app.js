@@ -19,12 +19,14 @@ class Toonman {
 
 	init () {
 		this.setEvent();
+		this.initContents();
 		this.setCards(this.cards);
 	}
 
 	initContents () {
 		this.hideCards();
 		this.showScrollButton();
+		this.categorizedCards = [];
 	}
 
 	setCards ( cardArr ) {
@@ -94,11 +96,23 @@ class Toonman {
 		// click Dim
 		this.dim.addEventListener('click', this.toggleLayerGroup.bind(this));
 		// click ScrollButton
-		this.scrollButton.addEventListener('click', function(event){
-			event.preventDefault();
-			let cardArr = document.querySelectorAll('[data-visible=hidden]');
-			this.setScrolledCards(cardArr);
-		}.bind(this));
+		this.scrollButton.addEventListener('click', this.clickScrollButton.bind(this));
+	}
+
+	clickScrollButton (event) {
+		event.preventDefault();
+		let cardArr = [];
+		if ( this.categorizedCards.length <= 0 ) {
+			cardArr = document.querySelectorAll('[data-visible=hidden]');
+		} else {
+			for ( let i = 0; i < this.categorizedCards.length; i ++ ) {
+				let card = this.categorizedCards[i];
+				if ( card.dataset.visible === "hidden" ) {
+					cardArr.push(card);
+				}
+			}
+		}
+		this.setScrolledCards(cardArr);
 	}
 
 	clickNavItem ( event ) {
@@ -106,7 +120,6 @@ class Toonman {
 		let buttonClass = button.className;
 		let text = event.target.innerText;
 		let i;
-		let categorizedCardArr = [];
 
 		// 카드 초기화
 		this.initContents();
@@ -124,10 +137,10 @@ class Toonman {
 		for ( i = 0; i < this.cards.length; i ++ ) {
 			let card = this.cards[i];
 			if ( card.dataset.category === text ) {
-				categorizedCardArr.push(card);
+				this.categorizedCards.push(card);
 			}
 		}
-		this.setCards(categorizedCardArr);
+		this.setCards(this.categorizedCards);
 	}
 
 	clickCard ( event ) {
