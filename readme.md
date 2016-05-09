@@ -34,9 +34,6 @@
 * NFC 형태로 변환하여 URL로 사용하여야 하며 이런 과정을 `Unicode Normalization` 이라고 함.
 * NPM 도구인 [UNORM](https://github.com/walling/unorm)을 사용. 
 
-### 이슈
-* ~~제목 클릭했을 경우에 `event.target`을 `.title`로 받아와서 자료 제대로 안들어감.~~
-
 ## Intro
 
 __Toonman__은 단순한 이미지 파일만으로 이미지 기반의 블로그를 제작해주는 심플한 도구입니다.
@@ -49,11 +46,10 @@ __Toonman__은 단순한 이미지 파일만으로 이미지 기반의 블로그
     - src/
         - js/
         - scss/
-        - template/
+        - index.html
     - attachment/
         - thumbnail/
     - dist/             
-    - index.html
     - config.json
     - gulpfile.js
 ```
@@ -78,13 +74,12 @@ __Toonman__은 단순한 이미지 파일만으로 이미지 기반의 블로그
 {
   "title": "Website Title",
   "description": "Descriptions for your website",
-  "rootUrl": "http://localhost:9999/dist",
   "scroll": 8
 }
 ```
 - title : 웹사이트의 제목 입력
 - description : 웹사이트의 설명 입력
-- rootUrl : `dist` 폴더가 업로드될 웹사이트의 접속 루트 입력
+- scroll : 한 페이지에 노출되는 아이템의 갯수 설정. `0`일 경우, 스크롤 기능 비활성.
 
 ##### 2. Copy Works to Attachment
 
