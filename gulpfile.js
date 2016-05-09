@@ -65,12 +65,6 @@ var dataObj = function () {
                     categoryList.push(splitedFileName[1]);
                 }
             }
-
-            // Test Encoding
-            // if ( data.indexOf('20150201') === 0 ) {
-            //     console.log(unorm.nfkc(splitedFileName[2]) === '다람쥐하우스');
-            // }
-            console.log(fileName);
         }
     });
 
@@ -109,9 +103,9 @@ gulp.task('sass', function () {
 gulp.task('template', function () {
     var dataObjResult = dataObj();
 
-    return gulp.src("./src/template/index.html")
+    return gulp.src("./src/index.html")
         .pipe(mustache(dataObjResult))
-        .pipe(gulp.dest("./dist/view"));
+        .pipe(gulp.dest("./dist"));
 });
 
 gulp.task('generateThumbnail', function () {
@@ -133,7 +127,7 @@ gulp.task('watch', function () {
         .pipe(webserver({
             livereload: false,
             port: 9999,
-            fallback: '/dist/view/index.html'
+            fallback: '/dist/index.html'
         }));
     gulp.start('default');
     gulp.watch('./src/js/*.js', ['browserify']);
