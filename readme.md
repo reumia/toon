@@ -29,6 +29,11 @@
 * 로컬에서 제대로 돌아가는 NPM 기반 Thumbnail Generator가 없음.
 * ~~디자이너들 성향 고려하여 썸네일 직접 제작하도록 할까?~~ 안됨... 디자인의 의미가 없음.
 
+### Unicode Normailzation
+* fs의 readdir을 통해 한글 파일명을 읽어오면 NFD 형태로 풀어져서 읽혀서 제대로된 값이 전달되지 않음.
+* NFC 형태로 변환하여 URL로 사용하여야 하며 이런 과정을 `Unicode Normalization` 이라고 함.
+* NPM 도구인 [UNORM](https://github.com/walling/unorm)을 사용. 
+
 ### 이슈
 * ~~제목 클릭했을 경우에 `event.target`을 `.title`로 받아와서 자료 제대로 안들어감.~~
 

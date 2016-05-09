@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     mustache = require('gulp-mustache'),
     fs = require('fs-extra'),
     merge = require('merge-stream'),
-    isImage = /\.(bmp|gif|jpg|jpeg|png)$/g;
+    isImage = /\.(bmp|gif|jpg|jpeg|png)$/g,
+    unorm = require('unorm');
 
 var dataObj = function () {
     // Function for Get GUID
@@ -46,7 +47,7 @@ var dataObj = function () {
             var id = guid(),
                 splitedData = data.split('.'),
                 format = splitedData[1],
-                fileName = splitedData[0],
+                fileName = unorm.nfkc(splitedData[0]),
                 splitedFileName = fileName.split('_');
 
             if ( splitedFileName.length === 3 ) {
@@ -64,6 +65,12 @@ var dataObj = function () {
                     categoryList.push(splitedFileName[1]);
                 }
             }
+
+            // Test Encoding
+            // if ( data.indexOf('20150201') === 0 ) {
+            //     console.log(unorm.nfkc(splitedFileName[2]) === '다람쥐하우스');
+            // }
+            console.log(fileName);
         }
     });
 
