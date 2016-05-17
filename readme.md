@@ -34,7 +34,11 @@
 * NFC 형태로 변환하여 URL로 사용하여야 하며 이런 과정을 `Unicode Normalization` 이라고 함.
 * NPM 도구인 [UNORM](https://github.com/walling/unorm)을 사용. 
 
+### 카테고리 두 번 클릭시 동작 이상
+
 ## Intro
+
+__Toonman__ is a perfectly simple tool for publishing your web cartoons.
 
 __Toonman__은 단순한 이미지 파일만으로 이미지 기반의 블로그를 제작해주는 심플한 도구입니다.
 이미지 파일명을 통해 이미지를 제작한 날짜, 분류, 제목을 입력하면 놀랍게도 깔끔하고 심플한 나만의 웹사이트를 운영할 수 있게 됩니다.

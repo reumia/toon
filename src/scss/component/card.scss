@@ -22,8 +22,9 @@ $namespace: card;
   }
 }
 .#{$namespace}__inner {
+  overflow: hidden;
   position: relative;
-  padding: $common-space $common-space 0;
+  //padding: $common-space $common-space 0;
   height: $card-height;
   background-color: #fff;
   &:before {
@@ -40,14 +41,26 @@ $namespace: card;
   }
   &:hover {
     &:before {
-      border-color: $color-brand;
-      background-color: rgba(255,255,255,.3);
+      border-color: $color-font-lightest;
+      background-color: transparentize($color-font-lightest, .3);
+    }
+    .thumbnail {
+      -webkit-transform: scale(2);
+      transform: scale(2);
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+    .info {
+      color: $color-background;
+      background: linear-gradient(transparentize(#919191, 0.2),transparent);
     }
   }
   .info {
     position: relative;
     z-index: 1;
+    padding: $common-space $common-space ($common-space * 2);
     text-align: center;
+    transition: color $common-transition, background $common-transition;
   }
   .thumbnail {
     position: absolute;
@@ -59,6 +72,7 @@ $namespace: card;
     background-position: 50% 0;
     background-repeat: no-repeat;
     background-color: $color-background;
+    transition: transform $common-transition, filter $common-transition;
   }
 }
 .#{$namespace}--more {
