@@ -121,6 +121,11 @@ class Toonman {
 		let text = event.target.innerText;
 		let i;
 
+		// buttonClass 초기화
+		if ( buttonClass.indexOf('active') != -1 ){
+			buttonClass = buttonClass.replace(' active', '');
+		}
+
 		// 카드 초기화
 		this.initContents();
 
